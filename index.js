@@ -11,10 +11,6 @@ const app = express();
 mongoose.connect(mongoURI);
 mongoose.connection.once('open', () => console.log('connected to database'));
 
-app.get('/', (req, res) => {
-  res.send('Server');
-});
-
 app.use(
   '/graphql',
   graphqlHTTP({
@@ -24,6 +20,16 @@ app.use(
 );
 
 authRoute(app);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+
+  const path = require('path');
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 // PORT 4000
 const PORT = process.env.PORT || 4000;
