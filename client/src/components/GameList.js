@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+import { Link } from 'react-router-dom';
 import { getGamesQuery } from '../queries/queries';
-import GameDetails from './GameDetails';
+// import GameDetails from './GameDetails';
 
 class GameList extends Component {
   constructor(props) {
@@ -15,26 +16,46 @@ class GameList extends Component {
     const { games } = this.props.data;
     if (this.props.data.loading) {
       return (
-        <div>Spinner</div>
+        <div className="loader" />
       );
     }
     return games.map(game => (
-      <li>
-<a key={game.id} href={game.name}>
-        <h1>{game.name}</h1>
-      </a>
-
-      </li>
+      <div className="sticky">
+        <div className="game-list">
+          <img src="https://giantbomb1.cbsistatic.com/uploads/scale_small/13/135472/1891758-001bulbasaur.png" alt="alt_image" className="description-image" />
+          <div>
+            <Link className="game-link" key={game.id} to={game.name}>
+              <h2>{game.name}</h2>
+            </Link>
+            <p>
+Genre:
+              {' '}
+              {game.genre}
+            </p>
+            <p>
+Rating:
+              {' '}
+              {game.rating}
+            </p>
+            <p>
+Company:
+              {' '}
+              {game.creator.name}
+            </p>
+          </div>
+        </div>
+        <hr />
+      </div>
     ));
   }
 
   render() {
     return (
       <div>
-        <ul id="game-list">
-          {this.displayGames()}
-        </ul>
-        <GameDetails gameId={this.state.selected} />
+
+        {this.displayGames()}
+
+        {/* <GameDetails gameId={this.state.selected} /> */}
       </div>
     );
   }

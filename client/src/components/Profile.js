@@ -29,13 +29,18 @@ Company:
             {game.creator.name}
           </p>
           <p>
-All Game by
+All other games I played by
             {' '}
             {game.creator.name}
           </p>
           <ul>
             {
-                        game.creator.games.map((item, i) => <li key={i}>{item.name}</li>)
+                        game.creator.games.map((item, i) => (
+                          <li key={i}>
+                            {' '}
+                            <a key={item.id} href={item.name}>{item.name}</a>
+                          </li>
+                        ))
                     }
           </ul>
         </div>

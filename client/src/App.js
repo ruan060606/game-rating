@@ -16,9 +16,11 @@ class App extends Component {
       <ApolloProvider client={client}>
         <BrowserRouter>
           <div className="App" id="main">
-            <h1>My Game Rating</h1>
-            <Route exact path="/" component={GameList} />
-            <Route exact path="/:id" component={Profile} />
+            <div className="container">
+              <h1><Link className="header-link" to="/">My Game Rating</Link></h1>
+              <Route exact path="/" component={GameList} />
+              <Route exact path="/:id" component={Profile} />
+            </div>
           </div>
         </BrowserRouter>
       </ApolloProvider>

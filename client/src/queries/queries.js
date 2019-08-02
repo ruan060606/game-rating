@@ -7,6 +7,9 @@ const getGamesQuery = gql`
             name
             genre
             rating
+            creator{
+                name
+            }
         }
     }
 `;
