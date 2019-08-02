@@ -1,2 +1,3 @@
 # game-rating
-A site for people to rate games
+A site for people to rate games with friends
+
