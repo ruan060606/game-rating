@@ -6,3 +6,7 @@ to run server with <code>npm run server</code>
 to run client with <code>npm run client</code>
 
 to run both <code> npm run dev</code>
+
+
+TODO
+login --local/google/twitter/facebook
